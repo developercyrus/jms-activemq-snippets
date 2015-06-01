@@ -13,7 +13,7 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class Consumer implements MessageListener {
-    private String topic = "javaee.jms.activemq.example1";
+    private String topic = "javaee.jms.activemq.example2";
     
     private Connection connection = null;
     private Destination destination = null;

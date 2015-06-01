@@ -34,11 +34,9 @@ public class Producer {
         TextMessage message = session.createTextMessage(msg);       
         producer.send(message); 
         System.out.println("sent: " + msg);
-        
     }
     
     public void close() throws JMSException {
-    	session.commit();  
         session.close();  
         connection.close();
     }

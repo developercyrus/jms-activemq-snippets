@@ -11,14 +11,17 @@ public class ClientIT {
     @Test
     public void test() throws Exception {
         String uri = "tcp://localhost:61616";
+        Consumer consumer = new Consumer(uri);        
         Producer producer = new Producer(uri);     
-        Consumer consumer = new Consumer(uri);
         
         producer.send("Hello world by topic by plugin");        
         Thread.sleep(1000);
         String expected = consumer.getMessage();
         
         assertEquals("Hello world by topic by plugin", expected);
+        
+        producer.close();
+        consumer.close();
     }
     
     @Test
@@ -29,10 +32,9 @@ public class ClientIT {
         broker.setUseJmx(false);  
         broker.start();  
                 
-        
-        Producer producer = new Producer(uri);
         Consumer consumer = new Consumer(uri);
-        
+        Producer producer = new Producer(uri);
+
         producer.send("Hello world by topic by embedded broker");
         Thread.sleep(1000);
         String expected = consumer.getMessage();
